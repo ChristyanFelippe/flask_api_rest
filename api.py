@@ -31,8 +31,7 @@ def get_purchases_order_by_id(id):
     for po in purchase_orders:
         if (po.get('id') == id):
             return jsonify(po)
-    return(jsonify({'message':'ID não encontrado'}))
-
+    return (jsonify({'message': f' ID {id} não encontrado'}))
 
 
 # Post Purchases order
