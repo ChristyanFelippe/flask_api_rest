@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
@@ -35,7 +35,30 @@ def get_purchases_order_by_id(id):
 
 
 # Post Purchases order
-# Get purchases order itens
+
+@app.route('/purchase_orders', methods=['POST'])
+def create_purchase_order():
+    request_data = request.get_json()
+    purchase_order = {
+        'id': request_data['id'],
+        'description': request_data['description'],
+        'itens': []
+    }
+
+    purchase_orders.append(purchase_order)
+
+    return jsonify(purchase_order)
+
+# Get order itens
+
+@app.route('/purchases_orders/<int:id>/itens')
+def get_order_itens(id):
+    for po in purchase_orders:
+        if (po.get('id') == id):
+            return jsonify(po.get('itens'))
+    return (jsonify({'message': f' ID {id} não encontrado'}))
+
+
 # Post Purchases order itens
 
 
